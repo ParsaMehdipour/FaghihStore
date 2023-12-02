@@ -1,0 +1,108 @@
+﻿@model PM.Application.Products.Commands.CreateProduct.CreateProductCommand
+
+@{
+    ViewData["HeaderTitle"] = "ایجاد محصول جدید";
+}
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 class="modal-title">ایجاد محصول جدید</h4>
+</div>
+
+<form asp-area="Administration" asp-controller="Product" asp-action="Create"
+      method="post"
+      data-ajax="true"
+      data-callback=""
+      data-action="Refresh"
+      enctype="multipart/form-data">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="TitlePersian" class="control-label">نام فارسی</label>
+                    <input class="form-control" asp-for="TitlePersian" onchange="makeSlug('TitlePersian', 'Slug')">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="TitleEnglish" class="control-label">نام انگلیسی</label>
+                    <input class="form-control" asp-for="TitleEnglish">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Slug" class="control-label">اسلاگ</label>
+                    <input class="form-control" asp-for="Slug">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" id="category_items">
+                <div class="form-group">
+                    <label asp-for="CategoryId" class="control-label">دسته بندی محصول</label>
+                    <select class="form-control" asp-items="ViewBag.Categories" onchange="selectCategory(this)">
+                        <option value="0">انتخاب دستی بندی محصول</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label asp-for="BrandId" class="control-label">برند محصول</label>
+                    <select class="form-control" asp-for="BrandId"
+                            asp-items="ViewBag.Brands">
+                        <option value="0"> برند محصول</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label asp-for="Image.File" class="control-label">عکس</label>
+                    <input type="file" class="form-control" asp-for="Image.File" accept="image/*">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Image.Alt" class="control-label">Alt</label>
+                    <input type="text" class="form-control" asp-for="Image.Alt">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Image.Title" class="control-label">عنوان</label>
+                    <input type="text" class="form-control" asp-for="Image.Title">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group no-margin">
+                    <label asp-for="MetaDescription" class="control-label">توضیحات متا</label>
+                    <textarea class="form-control autogrow" asp-for="MetaDescription"
+                              style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="PublishedDate" class="control-label">انتشار محصول</label>
+                    <input class="form-control" asp-for="PublishedDate">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="WarrantyDescription" class="control-label">درباره گارانتی</label>
+                    <input class="form-control" asp-for="WarrantyDescription">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">بستن</button>
+        <button type="submit" class="btn btn-info waves-effect waves-light">ایجاد</button>
+    </div>
+</form>

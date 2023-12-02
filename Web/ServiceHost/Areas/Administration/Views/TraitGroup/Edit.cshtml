@@ -1,0 +1,39 @@
+﻿@model TG.Application.TraitGroups.Commands.EditTraitGroup.EditTraitGroupCommand
+@{
+    ViewData["Title"] = $"ویرایش {Model.Title}";
+}
+
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 class="modal-title">@ViewData["Title"]</h4>
+</div>
+
+<form asp-area="Administration" asp-controller="TraitGroup" asp-action="Edit"
+      method="post"
+      data-ajax="true"
+      data-callback=""
+      data-action="Refresh"
+      enctype="multipart/form-data">
+    <div class="modal-body">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Title" class="control-label">نام</label>
+                <input type="text" class="form-control" asp-for="Title">
+                <span asp-validation-for="Title" class="error"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="OrderNumber" class="control-label">اولویت</label>
+                <input type="text" class="form-control" asp-for="OrderNumber">
+                <span asp-validation-for="OrderNumber" class="error"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">بستن</button>
+        <button type="submit" class="btn btn-warning waves-effect waves-light">ویرایش</button>
+    </div>
+</form>

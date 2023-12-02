@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\FS.SharedKernel\SH.Infrastructure\SH.Infrastructure.csproj" />
+    <ProjectReference Include="..\SS.Domain\SS.Domain.csproj" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<Using Include="SH.Infrastructure.Consts" />
+		<Using Include="FluentValidation" />
+		<Using Include="FluentResults" />
+		<Using Include="SS.Domain.Repositories" />
+	</ItemGroup>
+
+</Project>

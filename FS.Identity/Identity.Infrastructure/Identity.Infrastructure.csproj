@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<Using Include="SH.Infrastructure.Consts" />
+        <Using Include="FluentResults" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\FS.SharedKernel\SH.Infrastructure\SH.Infrastructure.csproj" />
+    <ProjectReference Include="..\Identity.Role\Role.Application\Role.Application.csproj" />
+    <ProjectReference Include="..\Identity.Role\Role.Domain\Role.Domain.csproj" />
+    <ProjectReference Include="..\Identity.User\User.Application\User.Application.csproj" />
+    <ProjectReference Include="..\Identity.User\User.Domain\User.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

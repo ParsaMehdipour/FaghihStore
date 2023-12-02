@@ -1,0 +1,40 @@
+﻿@model Role.Application.Roles.Commands.CreateRole.CreateRoleCommand
+
+@{
+    ViewData["Title"] = "ایجاد نقش جدید";
+}
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 class="modal-title">ایجاد نقش جدید</h4>
+</div>
+
+<form asp-area="Administration" asp-controller="Role" asp-action="Create"
+      method="post"
+      data-ajax="true"
+      data-callback=""
+      data-action="Refresh"
+      enctype="multipart/form-data">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label">نام</label>
+                    <input type="text" class="form-control" asp-for="Name">
+                    <span asp-validation-for="Name" class="error"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="DisplayName" class="control-label">نام نمایشی</label>
+                    <input type="text" class="form-control" asp-for="DisplayName">
+                    <span asp-validation-for="DisplayName" class="error"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">بستن</button>
+        <button type="submit" class="btn btn-success waves-effect waves-light">ایجاد</button>
+    </div>
+</form>

@@ -1,0 +1,50 @@
+﻿@model Inventory.Application.Inventories.Commands.CreateInventory.CreateInventoryCommand
+
+@{
+    ViewData["HeaderTitle"] = "ایجاد انبار جدید";
+}
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 class="modal-title">ایجاد انبارداری جدید</h4>
+</div>
+
+<form asp-area="Administration" asp-controller="Inventory" asp-action="Create"
+      method="post"
+      data-ajax="true"
+      data-callback=""
+      data-action="Refresh"
+      enctype="multipart/form-data">
+    <div class="modal-body">
+        <input type="hidden" asp-for="ProductId" />
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label asp-for="VarietyId" class="control-label">نوع</label>
+                    <select class="form-control" asp-for="VarietyId"
+                            asp-items="ViewBag.Varieties">
+                        <option value="@Guid.Empty">نوع</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="UnitPrice" class="control-label">قیمت</label>
+                    <input class="form-control" asp-for="UnitPrice">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Count" class="control-label">تعداد</label>
+                    <input class="form-control" asp-for="Count">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">بستن</button>
+        <button type="submit" class="btn btn-info waves-effect waves-light">ایجاد</button>
+    </div>
+</form>

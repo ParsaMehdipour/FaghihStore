@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shop.TraitGroup\src\TG.Application\TG.Application.csproj" />
+    <ProjectReference Include="..\PM.Domain.Services\PM.Domain.Services.csproj" />
+  </ItemGroup>
+
+</Project>

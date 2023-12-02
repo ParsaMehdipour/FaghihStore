@@ -1,0 +1,103 @@
+﻿@using SS.Infrastructure.EfCore;
+@model SS.Application.SiteSettings.EditSiteSetting.EditSiteSettingCommand
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">ویرایش تنظیمات @Model.Title</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <form asp-action="Index" method="post" role="form" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="Title" class="control-label">عنوان</label>
+                                        <input type="text" class="form-control" asp-for="Title">
+                                        <span asp-validation-for="Title" class="error"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="Description" class="control-label">توضیحات</label>
+                                        <input type="text" class="form-control" asp-for="Description">
+                                        <span asp-validation-for="Description" class="error"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label asp-for="Phone">تلفن</label>
+                                            <input asp-for="Phone" class="form-control" placeholder="011-12345678">
+                                            <span asp-validation-for="Description" class="error"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label asp-for="MobilePhoneNumber">شماره موبایل</label>
+                                        <input asp-for="MobilePhoneNumber" class="form-control" placeholder="09123456789">
+                                        <span asp-validation-for="Description" class="error"></span>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label asp-for="Address">توضیحات</label>
+                                        <textarea asp-for="Address" class="form-control"></textarea>
+                                        <span asp-validation-for="Description" class="error"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label asp-for="Logo">لوگو</label>
+                                        <input type="file" class="form-control" asp-for="Logo" accept="image/*">
+                                        <span asp-validation-for="Description" class="error"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label asp-for="Favicon">Favicon</label>
+                                        <input type="file" class="form-control" asp-for="Favicon" accept="image/*">
+                                        <span asp-validation-for="Description" class="error"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label asp-for="NationalId">اینستاگرام</label>
+                                        <input asp-for="NationalId" class="form-control">
+                                        <span asp-validation-for="Description" class="error"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label asp-for="Instagram">اینستاگرام</label>
+                                        <input asp-for="Instagram" class="form-control">
+                                        <span asp-validation-for="Description" class="error"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label asp-for="Telegram">تلگرام</label>
+                                        <input asp-for="Telegram" class="form-control">
+                                        <span asp-validation-for="Description" class="error"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label asp-for="Whatsapp">واتساپ</label>
+                                        <input asp-for="Whatsapp" class="form-control">
+                                        <span asp-validation-for="Description" class="error"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button identity-permission="@SiteSettingManagementPermissionExposer.Permissions.SITESETTING_FullManagement" type="submit" class="btn btn-info waves-effect waves-light">ویرایش</button>
+                            <a asp-action="Index" class="btn btn-dark waves-effect waves-light m-b-5">بازگشت</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>_01_LampshadeQuery</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CommnetManagement.Infrastructure.EFCore\CommnetManagement.Infrastructure.EFCore.csproj" />
+    <ProjectReference Include="..\DiscountManagement.Infrastructure.EFCore\DiscountManagement.Infrastructure.EFCore.csproj" />
+    <ProjectReference Include="..\FS.Inventory\src\Inventory.Infrastructure.EFCore\Inventory.Infrastructure.EFCore.csproj" />
+  </ItemGroup>
+
+</Project>

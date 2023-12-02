@@ -1,0 +1,359 @@
+﻿@model FaghihstoreQuery.Models.Product.QueryModel.SingleProductQueryModel
+
+<main class="page-content">
+    <div class="container">
+        <div class="row mb-1">
+            <div class="col-12">
+                <!-- breadcrumb -->
+                <div class="breadcrumb mb-1">
+                    <nav>
+                        @foreach (var category in Model.ProductCategories)
+                        {
+                            <a href="@category.Id">@category.Title</a>
+                        }
+                        <a>@Model.PersianTitle</a>
+                    </nav>
+                </div>
+                <!-- end breadcrumb -->
+            </div>
+        </div>
+        <div class="product-detail shadow-around mb-5 py-5">
+            <div class="row mb-3 mx-0">
+                <div class="col-xl-4 col-lg-4 col-md-6 mb-md-0 mb-3">
+                    <div class="product-gallery">
+                        <div class="swiper-container gallery-slider pb-md-0 pb-3">
+                            <div class="swiper-wrapper">
+                                @foreach (var image in Model.Images)
+                                {
+                                    <div class="swiper-slide">
+                                        <img src="@image.Url"
+                                             data-large="@image.Url" class="zoom-image"
+                                             alt="@image.Title">
+                                    </div>
+                                }
+                            </div>
+                            <!-- Add Pagination -->
+                            <div class="swiper-pagination d-md-none"></div>
+                        </div>
+                        <div class="swiper-container gallery-slider-thumbs d-md-block d-none">
+                            <div class="swiper-wrapper">
+                                @foreach (var image in Model.Images)
+                                {
+                                    <div class="swiper-slide">
+                                        <img src="@image.Url" alt="@image.Title">
+                                    </div>
+                                }
+                            </div>
+                            <!-- Add Arrows -->
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+                        <ul class="product--actions">
+                            <li>
+                                <!-- در صورت نیاز به استفاده از فرم از کد زیر استفاده کنید -->
+                                <!-- <form action="">
+                                    <button class="add-to-favorite"><i class="fas fa-heart"></i></button>
+                                </form> -->
+                                <a href="#" class="is-action add-to-favorite"><i class="fas fa-heart"></i></a>
+                                <span class="tooltip--action">افزودن به علاقمندی</span>
+                            </li>
+                            <li>
+                                <a href="#" data-toggle="modal" data-target="#shareLinkModal">
+                                    <i class="fas fa-share-alt"></i>
+                                </a>
+                                <span class="tooltip--action">اشتراک گذاری</span>
+                            </li>
+                            <li>
+                                <a href="#" class="is-action add-to-compare"><i class="fas fa-adjust"></i></a>
+                                <span class="tooltip--action">افزودن به لیست مقایسه</span>
+                            </li>
+                            <li>
+                                <a href="#" data-toggle="modal" data-target="#chartModal">
+                                    <i class="fas fa-chart-area"></i>
+                                </a>
+                                <span class="tooltip--action">نمودار قیمت</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-5 col-lg-4 col-md-6">
+                    <div class="product-title mb-3">
+                        <h1>
+                            @Model.PersianTitle
+                        </h1>
+                        <h1 class="product-title-en">
+                            @Model.EnglishTitle
+                        </h1>
+                    </div>
+                    <div class="d-block mb-2">
+                        <span class="font-weight-bold">برند:</span>
+                        <span>@Model.Brand</span>
+                    </div>
+                    <div class="d-block mb-4">
+                        <span class="font-weight-bold">گارانتی:</span>
+                        <span>@Model.Warranty</span>
+                    </div>
+                    <div class="product-params-special">
+                        <ul data-title="ویژگی‌های محصول">
+                            @foreach (var trait in Model.ProductTraitsWithTraitGroups.SelectMany(_ => _.ProductTraitQueryModels).Where(_ => _.HasInGeneralSpecification))
+                            {
+                                <li>
+                                    <span>@trait.Title:</span>
+                                    <span>@trait.Value</span>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-6 mx-lg-0 mx-auto">
+                    <div class="box-info-product">
+                        <div class="product-colors mb-3">
+                            <span class="d-block mb-3">رنگ:</span>
+                            <div class="input-radio-color">
+                                <div class="input-radio-color__list">
+                                    @foreach (var variety in Model.ProductVarieties.OrderBy(_ => _.UnitPrice))
+                                    {
+                                        if (variety.InStock)
+                                        {
+                                        /*if a color has White must be add this class to tag: input-radio-color__item--white*/
+                                            <label class="input-radio-color__item" style="color: @variety.Value;">
+                                                <input type="radio" name="color" onclick="SetPrice('@variety.UnitPrice',@variety.Quantity)"> <span></span>
+                                            </label>
+                                        }
+                                        else
+                                        {
+                                            <label class="input-radio-color__item input-radio-color__item--disabled" style="color: @variety.Value;">
+                                                <input type="radio" name="color" disabled=""> <span></span>
+                                            </label>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-block mb-3">
+                            <span class="d-block">
+                                تعداد:
+                            </span>
+                            <div class="num-block">
+                                <div class="num-in">
+                                    <span class="plus"></span>
+                                    <input type="text" class="in-num" data-bts-min="1" value="1" data-bts-max="2" id="quantity" readonly="">
+                                    <span class="minus dis"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-end mt-3">
+                            <div class="product-price">
+                                @*<div class="product-price-info">
+                                <div class="product-price-off">
+                                %10 <span>تخفیف</span>
+                                </div>
+                                <div class="product-price-prev">
+                                3,216,000
+                                </div>
+                                </div>*@
+                                <div class="product-price-real">
+                                    <div id="price" class="product-price-raw">@Model.ProductVarieties.MinBy(_=>_.UnitPrice)!.UnitPrice </div>
+                                    تومان
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <a href="#" class="add-to-cart">
+                                افزودن به سبد خرید
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="py-3">
+                <div class="row mx-0">
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <div class="services pt-3 row mx-0">
+                <div class="col-md-3 col-sm-6 mb-md-0 mb-4">
+                    <div class="service-item">
+                        <img src="/Ui/assets/images/services/delivery-person.png" alt="">
+                        <div class="service-item-body">
+                            <h6>تحویل سریع و رایگان</h6>
+                            <p>تحویل رایگان کالا برای کلیه سفارشات بیش از 500 هزار تومان</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-md-0 mb-4">
+                    <div class="service-item">
+                        <img src="/Ui/assets/images/services/recieve.png" alt="">
+                        <div class="service-item-body">
+                            <h6>۷ روز ضمانت بازگشت</h6>
+                            <p>در صورت نارضایتی به هر دلیلی می توانید محصول را بازگردانید</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-md-0 mb-4">
+                    <div class="service-item">
+                        <img src="/Ui/assets/images/services/headset.png" alt="">
+                        <div class="service-item-body">
+                            <h6>پشتیبانی ۲۴ ساعته</h6>
+                            <p>در صورت وجود هرگونه سوال یا ابهامی، با ما در تماس باشید</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-md-0 mb-4">
+                    <div class="service-item">
+                        <img src="/Ui/assets/images/services/debit-card.png" alt="">
+                        <div class="service-item-body">
+                            <h6>پرداخت آنلاین ایمن</h6>
+                            <p>محصولات مدنظر خود را با خیال آسوده به صورت آنلاین خریداری کنید</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- product-tab-content -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <div class="product-tab-content">
+                    <ul class="nav nav-tabs" id="product-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="productDescription-tab" data-toggle="tab"
+                               href="#productDescription" role="tab" aria-controls="productDescription"
+                               aria-selected="true">توضیحات</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="productParams-tab" data-toggle="tab" href="#productParams"
+                               role="tab" aria-controls="productParams" aria-selected="false">مشخصات فنی</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="product-tab">
+                        <div class="tab-pane fade show active" id="productDescription" role="tabpanel"
+                             aria-labelledby="productDescription-tab">
+                            <div class="product-desc">
+                                <div class="accordion accordion-product" id="accordionDescription">
+                                    @foreach (var description in Model.Descriptions)
+                                    {
+                                        <div class="card">
+                                            <div class="card-header" id="headingOne">
+                                                <h5 class="mb-0">
+                                                    <button class="btn" type="button" data-toggle="collapse"
+                                                            data-target="#collapseOne" aria-expanded="true"
+                                                            aria-controls="collapseOne">
+                                                        @description.Title
+                                                    </button>
+                                                </h5>
+                                            </div>
+
+                                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                                 data-parent="#accordionDescription">
+                                                <div class="card-body">
+                                                    @Html.Raw(description.Description)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="productParams" role="tabpanel"
+                             aria-labelledby="productParams-tab">
+                            <div class="product-params">
+                                @foreach (var traitGroup in Model.ProductTraitsWithTraitGroups)
+                                {
+                                    <section>
+                                        <h3 class="params-title">@traitGroup.TraitGroupTitle</h3>
+                                        <ul class="params-list">
+                                            @foreach (var trait in traitGroup.ProductTraitQueryModels)
+                                            {
+                                                <li>
+                                                    <div class="params-list-key">
+                                                        <span>@trait.Title</span>
+                                                    </div>
+                                                    <div class="params-list-value">
+                                                        <span>
+                                                            @trait.Value
+                                                        </span>
+                                                    </div>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </section>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end product-tab-content -->
+        <section class="product-carousel">
+            <div class="section-title">
+                <i class="fad fa-retweet"></i>
+                پیشنهادهای مشابه
+            </div>
+            <div class="swiper-container slider-lg pb-0">
+                <div class="swiper-wrapper">
+                    @foreach (var similarProduct in Model.SimilarProductQueryModels)
+                    {
+                        <div class="swiper-slide">
+                            <div class="product-box">
+                                <div class="product-box--thumbnail-container">
+                                    <span class="product-box--specialSell"></span>
+                                    <img src="@similarProduct.Picture" class="product-box--thumbnail"
+                                         alt="product title">
+                                    <a asp-action="Details" asp-route-id="@similarProduct.Id" class="product-box--link"></a>
+                                </div>
+                                <div class="product-box--detail">
+                                    <h3 class="product-box--title">
+                                        <a asp-action="Details" asp-route-id="@similarProduct.Id">
+                                            @similarProduct.Title
+                                        </a>
+                                    </h3>
+                                    <div class="product-box--price-container">
+                                        @* <div class="product-box--price-discount">6%</div>
+                                    <div class="product-box--price">
+                                    <span class="product-box--price-now">
+                                    <div class="product-box--price-value">10,359,000</div>
+                                    <div class="product-box--price-currency">تومان</div>
+                                    </span>
+                                    <span class="product-box--price-old">10,990,000</span>
+                                    </div>*@
+                                        <div class="product-box--price">
+                                            <span class="product-box--price-now">
+                                                <div class="product-box--price-value">@similarProduct.UnitPrice</div>
+                                                <div class="product-box--price-currency">تومان</div>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="product-box--action">
+                                        <a href="#" class="product-box--action-btn product-box--action-wishlist">
+                                            <i class="fas fa-heart"></i>
+                                        </a>
+                                        <a href="#" class="product-box--action-btn product-box--action-cart">
+                                            اضافه
+                                            سبد
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <!-- Add Arrows -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </section>
+    </div>
+</main>
+
+@section Scripts{
+    <script>
+        function SetPrice(price) {
+            document.getElementById("price").innerHTML = price;
+
+
+        }
+    </script>
+}

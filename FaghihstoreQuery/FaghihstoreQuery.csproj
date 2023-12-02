@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FS.Category\src\Category.InfrastructureEfCore\Category.InfrastructureEfCore.csproj" />
+    <ProjectReference Include="..\FS.Inventory\src\Inventory.Infrastructure.EFCore\Inventory.Infrastructure.EFCore.csproj" />
+    <ProjectReference Include="..\FS.ProductBrand\src\PB.Infrastructure.EfCore\PB.Infrastructure.EfCore.csproj" />
+    <ProjectReference Include="..\FS.SharedKernel\SH.Infrastructure\SH.Infrastructure.csproj" />
+    <ProjectReference Include="..\FS.Shop\Shop.Product\PM.Infrastructure.EFCore\PM.Infrastructure.EFCore.csproj" />
+    <ProjectReference Include="..\FS.Shop\Shop.TraitGroup\src\TG.Infrastructure.EfCore\TG.Infrastructure.EfCore.csproj" />
+    <ProjectReference Include="..\FS.Shop\Shop.VarietyGroup\src\VG.Infrastructure.EfCore\VG.Infrastructure.EfCore.csproj" />
+  </ItemGroup>
+
+</Project>

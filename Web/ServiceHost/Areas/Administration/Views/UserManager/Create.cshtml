@@ -1,0 +1,86 @@
+﻿@using User.Domain.Enums
+@model User.Application.Users.Commands.CreateUser.CreateUserCommand
+
+@{
+    ViewData["Title"] = "ایجاد کاربر عادی";
+}
+
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 class="modal-title">ایجاد کاربر جدید</h4>
+</div>
+
+<form asp-area="Administration" asp-controller="UserManager" asp-action="Create"
+      method="post"
+      data-ajax="true"
+      data-callback=""
+      data-action="Refresh"
+      enctype="multipart/form-data">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Firstname" class="control-label">نام</label>
+                    <input type="text" class="form-control" asp-for="Firstname">
+                    <span asp-validation-for="Firstname" class="error"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Lastname" class="control-label">نام خانوادگی</label>
+                    <input type="text" class="form-control" asp-for="Lastname">
+                    <span asp-validation-for="Lastname" class="error"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="PhoneNumber" class="control-label">شماره موبایل</label>
+                    <input type="text" class="form-control" asp-for="PhoneNumber">
+                    <span asp-validation-for="PhoneNumber" class="error"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label">ایمیل</label>
+                    <input type="text" class="form-control" asp-for="Email">
+                    <span asp-validation-for="Email" class="error"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label asp-for="Role">نقش</label>
+                    <select asp-for="Role" class="form-control" dir="rtl" asp-items="ViewBag.Roles">
+                        <option value="0">انتخاب نقش کاربر</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label asp-for="NationalCode">کدملی</label>
+                    <input type="text" asp-for="NationalCode" class="form-control">
+                    <span asp-validation-for="NationalCode" class="error"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label asp-for="Status">وضعیت</label>
+                    <select asp-for="Status" class="form-control" dir="rtl">
+                        <option value="@Status.Unblock">UnBlock</option>
+                        <option value="@Status.Block">Block</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">بستن</button>
+        <button type="submit" class="btn btn-success waves-effect waves-light">ایجاد</button>
+    </div>
+</form>

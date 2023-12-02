@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="/Ui/assets/css/font-awesome.min.css">
+    <!-- Bootstrap 4.5.3 -->
+    <link rel="stylesheet" href="/Ui/assets/bootstrap/css/bootstrap.min.css">
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="/Ui/assets/css/plugins/apexcharts.css">
+    <link rel="stylesheet" href="/Ui/assets/css/plugins/jquery.classycountdown.min.css">
+    <link rel="stylesheet" href="/Ui/assets/css/plugins/nouislider.min.css">
+    <link rel="stylesheet" href="/Ui/assets/css/plugins/sweetalert2.min.css">
+    <link rel="stylesheet" href="/Ui/assets/css/plugins/select2.min.css">
+    <link rel="stylesheet" href="/Ui/assets/css/plugins/swiper.min.css">
+    <!-- CSS Template -->
+    <link rel="stylesheet" href="/Ui/assets/css/theme.css">
+    <!-- Here goes your custom.css -->
+    <link rel="stylesheet" href="/Ui/assets/css/custom.css">
+
+    <link rel="stylesheet" href="/Ui/assets/css/colors/red.css" id="colorswitch">
+
+    @RenderSection("Styles",false)
+</head>
+
+<body>
+
+    <div class="page-wrapper">
+
+        <!-- Page Header -->
+        <partial name="Partials/_HeaderPartial.cshtml" />
+        <!-- end Page Header -->
+        <!-- Page Content -->
+        @RenderBody()
+        <!-- end Page Content -->
+        <!-- Page Loader -->
+        <div class="page-loader">
+            <div class="page-loader-content">
+                <div class="logo-area">
+                    <img src="/Ui/assets/images/logo.png" alt="">
+                </div>
+                <span class="loader"></span>
+            </div>
+        </div>
+        <!-- end Page Loader -->
+        <!-- Page Footer -->
+        <partial name="Partials/_FooterPartial.cshtml" />
+        <!-- Page Footer end-->
+    </div>
+
+    <!-- JS Global Compulsory -->
+    <script src="/Ui/assets/js/jquery-3.5.1.min.js"></script>
+    <script src="/Ui/assets/js/plugins/popper.min.js"></script>
+    <script src="/Ui/assets/bootstrap/js/bootstrap.min.js"></script>
+    @RenderSection("Scripts",false)
+    <!-- JS Implementing Plugins -->
+    <script src="/Ui/assets/js/plugins/apexcharts.min.js"></script>
+    <script src="/Ui/assets/js/plugins/jquery.knob.js"></script>
+    <script src="/Ui/assets/js/plugins/jquery.throttle.js"></script>
+    <script src="/Ui/assets/js/plugins/jquery.classycountdown.min.js"></script>
+    <script src="/Ui/assets/js/plugins/jquery.nicescroll.min.js"></script>
+    <script src="/Ui/assets/js/plugins/nouislider.min.js"></script>
+    <script src="/Ui/assets/js/plugins/sweetalert2.all.min.js"></script>
+    <script src="/Ui/assets/js/plugins/select2.full.min.js"></script>
+    <script src="/Ui/assets/js/plugins/swiper.min.js"></script>
+    <script src="/Ui/assets/js/plugins/ResizeSensor.min.js"></script>
+    <script src="/Ui/assets/js/plugins/theia-sticky-sidebar.min.js"></script>
+    <script src="/Ui/assets/js/plugins/zoomsl.min.js"></script>
+    <script src="/Ui/assets/js/plugins/wNumb.js"></script>
+    <!-- JS Template -->
+    <script src="/Ui/assets/js/theme.js"></script>
+    <!-- Here goes your custom.js -->
+    <script src="/Ui/assets/js/custom.js"></script>
+</body>
+
+</html>

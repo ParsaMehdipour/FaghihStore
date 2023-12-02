@@ -1,0 +1,50 @@
+﻿@model CD.Application.CountryDivisions.Commands.EditCountryDivision.EditCountryDivisionCommand
+
+
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 class="modal-title">ویرایش @(Model.Name)</h4>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">ویرایش @(Model.Name)</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <form asp-area="Administration" asp-controller="CountryDivision" asp-action="Edit" method="post"
+                              data-ajax="true"
+                              data-callback=""
+                              data-action="Refresh">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="Name" class="control-label">نام</label>
+                                        <input type="text" class="form-control" asp-for="Name">
+                                        <span asp-validation-for="Name" class="error"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label" asp-for="ParentId">زیرمجموعه</label>
+                                        <select asp-for="ParentId" class="form-control" dir="rtl" asp-items="ViewBag.ParentLinks">
+                                            <option value="@Guid.Empty"> </option>
+                                        </select>
+                                        <span asp-validation-for="ParentId" class="error"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-info waves-effect waves-light">ویرایش</button>
+                            <a asp-action="Index" class="btn btn-dark waves-effect waves-light m-b-5">بازگشت</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

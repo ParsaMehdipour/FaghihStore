@@ -1,0 +1,37 @@
+﻿@model PM.Application.ProductImages.Commands.SetThumbnailProductImage.SetThumbnailProductImageCommand
+@{
+}
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 class="modal-title">تغییر به عکس پیشفرض</h4>
+</div>
+
+<form asp-area="Administration" asp-controller="ProductImage" asp-action="SetThumbnail"
+      method="post"
+      data-ajax="true"
+      data-callback=""
+      data-action="Refresh"
+      enctype="multipart/form-data">
+    <div class="modal-body">
+        <input type="hidden" asp-for="ProductId" value="@Model.ProductId" />
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Title" class="control-label">عنوان</label>
+                    <input class="form-control" asp-for="Title">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Alt" class="control-label">Alt</label>
+                    <input class="form-control" asp-for="Alt">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">بستن</button>
+        <button type="submit" class="btn btn-success waves-effect waves-light">ثبت</button>
+    </div>
+</form>

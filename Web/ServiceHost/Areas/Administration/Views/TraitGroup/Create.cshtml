@@ -1,0 +1,35 @@
+﻿@model TG.Application.TraitGroups.Commands.CreateTraitGroup.CreateTraitGroupCommand
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 class="modal-title">ایجاد گروه ویژگی جدید</h4>
+</div>
+
+<form asp-area="Administration" asp-controller="TraitGroup" asp-action="Create"
+      method="post"
+      data-ajax="true"
+      data-callback=""
+      data-action="Refresh"
+      enctype="multipart/form-data">
+    <div class="modal-body">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Title" class="control-label">نام</label>
+                <input type="text" class="form-control" asp-for="Title">
+                <span asp-validation-for="Title" class="error"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="OrderNumber" class="control-label">اولویت</label>
+                <input type="text" class="form-control" asp-for="OrderNumber" value="1">
+                <span asp-validation-for="OrderNumber" class="error"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">بستن</button>
+        <button type="submit" class="btn btn-info waves-effect waves-light">ایجاد</button>
+    </div>
+</form>

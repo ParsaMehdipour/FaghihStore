@@ -1,0 +1,24 @@
+﻿@using SH.Infrastructure.Extensions
+@model SH.Infrastructure.Criteria.ResponseModel
+
+@{
+    string path = Context.Request.GetPath();
+    string search = $"&parameters.search={Model.Parameters.Search}";
+}
+
+
+
+@if (Model.Pager.TotalPages > 0)
+{
+    <div class="col-12 px-0">
+        <div class="pagination">
+            <a href="@(path)?parameters.pagenumber=@(Model.Pager.CurrentPage - 1)@(search)" class="prev @(Model.Pager.CurrentPage > 1 ? string.Empty : "disabled")"><i class="far fa-arrow-from-left"></i></a>
+            @for (int pageIndex = Model.Pager.StartPage; pageIndex <= Model.Pager.EndPage; pageIndex++)
+            {
+                <a href="#" class="@(pageIndex == Model.Pager.CurrentPage ? "current" : string.Empty)">@pageIndex</a>
+
+            }
+            <a href="@(path)?parameters.pagenumber=@(Model.Pager.CurrentPage + 1)@(search)" class="next @(Model.Pager.CurrentPage < Model.Pager.TotalPages ? string.Empty : "disabled")"><i class="far fa-arrow-to-left"></i></a>
+        </div>
+    </div>
+}

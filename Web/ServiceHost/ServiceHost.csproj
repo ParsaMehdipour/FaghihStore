@@ -1,0 +1,59 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<UserSecretsId>269ff6c3-f992-4550-b232-90fe1f40db14</UserSecretsId>
+		<Nullable>disable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\CommentManagement.Infrastructure.Configuration\CommentManagement.Infrastructure.Configuration.csproj" />
+		<ProjectReference Include="..\..\DiscountManagement.Configuration\DiscountManagement.Configuration.csproj" />
+		<ProjectReference Include="..\..\FaghihstoreQuery\FaghihstoreQuery.csproj" />
+		<ProjectReference Include="..\..\FS.Category\src\Category.InfrastructureEfCore\Category.InfrastructureEfCore.csproj" />
+		<ProjectReference Include="..\..\FS.CountryDivisions\CD.Infrastructure.EfCore\CD.Infrastructure.EfCore.csproj" />
+		<ProjectReference Include="..\..\FS.Identity\Identity.Infrastructure\Identity.Infrastructure.csproj" />
+		<ProjectReference Include="..\..\FS.Inventory\src\Inventory.Infrastructure.EFCore\Inventory.Infrastructure.EFCore.csproj" />
+		<ProjectReference Include="..\..\FS.ProductBrand\src\PB.Infrastructure.EfCore\PB.Infrastructure.EfCore.csproj" />
+		<ProjectReference Include="..\..\FS.SharedKernel\SH.Infrastructure\SH.Infrastructure.csproj" />
+		<ProjectReference Include="..\..\FS.Shop\Shop.Product\PM.Infrastructure.EFCore\PM.Infrastructure.EFCore.csproj" />
+		<ProjectReference Include="..\..\FS.Shop\Shop.TraitGroup\src\TG.Infrastructure.EfCore\TG.Infrastructure.EfCore.csproj" />
+		<ProjectReference Include="..\..\FS.SiteSettings\SS.Application\SS.Application.csproj" />
+		<ProjectReference Include="..\..\FS.Shop\Shop.VarietyGroup\src\VG.Infrastructure.EfCore\VG.Infrastructure.EfCore.csproj" />
+		<ProjectReference Include="..\..\FS.SiteSettings\SS.Infrastructure.EfCore\SS.Infrastructure.EfCore.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="6.0.2" />
+		<PackageReference Include="AspNetCore.HealthChecks.UI" Version="7.0.0-rc2.7" />
+		<PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="7.0.0-rc2.7" />
+		<PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="7.0.0-rc2.7" />
+		<PackageReference Include="AspNetCore.HealthChecks.UI.SqlServer.Storage" Version="7.0.0-rc2.7" />
+		<PackageReference Include="AspNetCore.HealthChecks.Uris" Version="7.0.0-rc2.5" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.2" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.2">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.2" />
+		<PackageReference Include="Nancy" Version="2.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Properties\PublishProfiles\" />
+		<Folder Include="wwwroot\ProductPictures\دکوری\صندلی-پاف-آرتین-مدل-adt\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Update="Areas\Administration\Views\Brand\Edit.cshtml">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+		<Content Update="appsettings*.json">
+			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
+		</Content>
+	</ItemGroup>
+
+</Project>

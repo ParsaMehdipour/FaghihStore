@@ -1,0 +1,20 @@
+﻿@*//////////////////////////////////////////-------//////////////////////////////////////////*@
+@*//////////////-Use this file when you want to upload a file with uploader-//////////////*@
+@*//////////////-NOTE: call this partial file for each file input element in razor page-//////////////*@
+@*//////////////////////////////////////////-------//////////////////////////////////////////*@
+
+@model SH.Infrastructure.FileUploader.Models.Uploader
+@using SH.Infrastructure.FileUploader.Enums
+
+@if (Model.UploadOperation == UploadOperation.Read)
+{
+    <script>
+        showImage('@Model.Url', '@Model.Name',0,'@Model.InputId');
+    </script>
+}
+else if (Model.UploadOperation == UploadOperation.Upload)
+{
+    <script>
+        imagePreview('@Model.InputId');
+    </script>
+}

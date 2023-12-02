@@ -1,0 +1,283 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using SH.Infrastructure.Criteria
+@model SH.Infrastructure.Criteria.ResponseModel<IEnumerable<FaghihstoreQuery.Models.Product.QueryModel.ProductQueryModel>,FaghihstoreQuery.Models.Product.SerachModel.ProductSearchModel>
+
+<main class="page-content">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-3 col-md-4 sticky-sidebar filter-options-sidebar">
+                <div class="d-md-none">
+                    <div class="header-filter-options">
+                        <span>جستجوی پیشرفته <i class="fad fa-sliders-h"></i></span>
+                        <button class="btn-close-filter-sidebar"><i class="fal fa-times"></i></button>
+                    </div>
+                </div>
+                <div class="sidebar-widget">
+                    <div class="widget widget-filter-options shadow-around">
+                        <div class="widget-title">برند</div>
+                        <div class="search-in-options form-element-row">
+                            <div class="form-element-with-icon">
+                                <input type="text" class="input-element" placeholder="جستجوی نام برند...">
+                                <i class="fad fa-file-search"></i>
+                            </div>
+                        </div>
+                        <div class="widget-content">
+                            @foreach (var brand in new SelectList(ViewBag.Brands, "Id", "Title"))
+                            {
+                                <label class="container-checkbox">
+                                    @brand.Text
+                                    <input type="checkbox" checked="@brand.Selected" id="@brand.Value" onclick="SendBrandId()">
+                                    <span class="checkmark"></span>
+                                </label>
+                            }
+                        </div>
+                    </div>
+                    <div class="widget shadow-around">
+                        <div class="widget-content">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                                <label class="custom-control-label" for="customSwitch1">
+                                    فقط کالاهای موجود در
+                                    انبار
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget shadow-around">
+                        <div class="widget-content">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="customSwitch2">
+                                <label class="custom-control-label" for="customSwitch2">فقط ارسال فوری</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget shadow-around">
+                        <div class="widget-title">محدوده قیمت</div>
+                        <div class="widget-content">
+                            <form action="#" class="filter-price">
+                                <div class="mt-2 mb-2">
+                                    <div class="filter-slider">
+                                        <div id="slider-non-linear-step" class="price-slider"></div>
+                                    </div>
+                                    <ul class="filter-range">
+                                        <li data-label="از" data-currency=" تومان">
+                                            <input type="text" data-value="0" value="0" name="price[min]"
+                                                   data-range="0" class="js-slider-range-from disabled example-val"
+                                                   id="skip-value-lower" disabled="disabled">
+                                        </li>
+                                        <li data-label="تا" data-currency="تومان">
+                                            <input type="text" data-value="17700000" value="17700000"
+                                                   name="price[max]" data-range="17700000"
+                                                   class="js-slider-range-to disabled example-val"
+                                                   id="skip-value-upper" disabled="disabled">
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="mt-3 mb-3">
+                                    <button class="btn btn-primary d-inline-flex align-items-center">
+                                        <i class="fad fa-funnel-dollar ml-2"></i>
+                                        اعمال محدوده قیمت
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="widget widget-filter-options shadow-around">
+                        <div class="widget-title">رنگ</div>
+                        <div class="search-in-options form-element-row">
+                            <div class="form-element-with-icon">
+                                <input type="text" class="input-element" placeholder="جستجوی نام رنگ...">
+                                <i class="fad fa-file-search"></i>
+                            </div>
+                        </div>
+                        <div class="widget-content pl-3">
+                            <label class="container-checkbox">
+                                <span class="d-flex justify-content-between align-items-center">
+                                    <span>مشکی</span>
+                                    <span class="color-option" style="background-color: #000;"></span>
+                                </span>
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container-checkbox">
+                                <span class="d-flex justify-content-between align-items-center">
+                                    <span>آبی</span>
+                                    <span class="color-option" style="background-color: #0000ff;"></span>
+                                </span>
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container-checkbox">
+                                <span class="d-flex justify-content-between align-items-center">
+                                    <span>خاکستری</span>
+                                    <span class="color-option" style="background-color: #808080;"></span>
+                                </span>
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container-checkbox">
+                                <span class="d-flex justify-content-between align-items-center">
+                                    <span>سفید</span>
+                                    <span class="color-option" style="background-color: #fff;"></span>
+                                </span>
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container-checkbox">
+                                <span class="d-flex justify-content-between align-items-center">
+                                    <span>سبز</span>
+                                    <span class="color-option" style="background-color: #008000;"></span>
+                                </span>
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container-checkbox">
+                                <span class="d-flex justify-content-between align-items-center">
+                                    <span>قرمز</span>
+                                    <span class="color-option" style="background-color: #f44336;"></span>
+                                </span>
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container-checkbox">
+                                <span class="d-flex justify-content-between align-items-center">
+                                    <span>طلایی</span>
+                                    <span class="color-option" style="background-color: #c99212;"></span>
+                                </span>
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container-checkbox">
+                                <span class="d-flex justify-content-between align-items-center">
+                                    <span>نقره ای</span>
+                                    <span class="color-option" style="background-color: #dedede;"></span>
+                                </span>
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container-checkbox">
+                                <span class="d-flex justify-content-between align-items-center">
+                                    <span>زرد</span>
+                                    <span class="color-option" style="background-color: #ffff00;"></span>
+                                </span>
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container-checkbox">
+                                <span class="d-flex justify-content-between align-items-center">
+                                    <span>بنفش</span>
+                                    <span class="color-option" style="background-color: #800080;"></span>
+                                </span>
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="d-md-none">
+                        <button class="btn-filter-product-submit">جستجوی پیشرفته</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-none">
+                    <button class="btn-filter-sidebar">
+                        جستجوی پیشرفته <i class="fad fa-sliders-h"></i>
+                    </button>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <!-- breadcrumb -->
+                        <div class="breadcrumb mb-2 pt-2">
+                            <nav>
+                                <a href="#">فروشگاه اینترنتی</a>
+                                <a href="#">کتاب، لوازم تحریر و هنر</a>
+                                <a href="#">لوازم تحریر</a>
+                            </nav>
+                        </div>
+                        <!-- end breadcrumb -->
+                    </div>
+                </div>
+                <div class="listing-items row">
+                    @foreach (var item in Model.Model)
+                    {
+                        <div class="col-lg-3 col-md-4 col-sm-6 px-0">
+                            <div class="product-box">
+                                <div class="product-box--thumbnail-container">
+                                    <span class="product-box--specialSell"></span>
+                                    <img src="@item.Picture" class="product-box--thumbnail"
+                                         alt="product title">
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="product-box--link"></a>
+                                </div>
+                                <div class="product-box--detail">
+                                    <h3 class="product-box--title">
+                                        <a asp-action="Details" asp-route-id="@item.Id">
+                                            @item.Title
+                                        </a>
+                                    </h3>
+                                    <div class="product-box--price-container">
+                                        @* <div class="product-box--price-discount">6%</div>
+                                    <div class="product-box--price">
+                                    <span class="product-box--price-now">
+                                    <div class="product-box--price-value">10,359,000</div>
+                                    <div class="product-box--price-currency">تومان</div>
+                                    </span>
+                                    <span class="product-box--price-old">10,990,000</span>
+                                    </div>*@
+                                        <div class="product-box--price">
+                                            <span class="product-box--price-now">
+                                                <div class="product-box--price-value">@item.UnitPrice</div>
+                                                <div class="product-box--price-currency">تومان</div>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="product-box--action">
+                                        <a href="#" class="product-box--action-btn product-box--action-wishlist">
+                                            <i class="fas fa-heart"></i>
+                                        </a>
+                                        <a href="#" class="product-box--action-btn product-box--action-cart">
+                                            اضافه
+                                            سبد
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <partial name="Partials/_Pagination" model="new ResponseModel{Pager = Model.Pager,Parameters = Model.Parameters}" />
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section Scripts
+    {
+    <script>
+        function SendBrandId(id) {
+
+            var brandIds = $('input:checked').map(function (idx, elem) {
+                return $(elem).attr('id');
+            }).get();
+
+            var brandCurrents = $('input:checked').map(function (idx, elem) {
+                return $(elem).is(":checked");
+            }).get();
+
+            var brands = [];
+            var indexes = "";
+
+            for (let i = 0; i < brandIds.length; i++) {
+
+                brands.push({ Id: brandIds[i], IsCurrent: brandCurrents[i] });
+
+                indexes += `searchModel.BrandQueryFilters[${i}].Id=${brandIds[i]}&searchModel.BrandQueryFilters[${i}].IsCurrent=${brandCurrents[i]}&`;
+            }
+
+            var searchPostData = {
+                'BrandQueryFilters': brands,
+            };
+
+            window.location.href = "/Products?" + indexes;
+        }
+    </script>
+}

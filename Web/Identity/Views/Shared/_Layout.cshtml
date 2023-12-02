@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@(ViewData["Title"] = "فقیه استور")</title>
+
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="~/css/font-awesome.min.css">
+    <!-- Bootstrap 4.5.3 -->
+    <link rel="stylesheet" href="~/bootstrap/css/bootstrap.min.css">
+
+    <!-- CSS Template -->
+    <link rel="stylesheet" href="~/css/theme.css">
+</head>
+
+<body>
+
+    <div class="page-wrapper auth-page-wrapper">
+
+        <!-- Page Content -->
+        <main class="page-content">
+            <div class="container">
+                <div class="auth-wrapper">
+                    @RenderBody()
+                </div>
+            </div>
+        </main>
+        <!-- end Page Content -->
+        <!-- Page mini-Footer -->
+        <footer class="mini-footer">
+            <div class="container main-container">
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="mini-footer-menu">
+                            <li><a href="#">درباره ما</a></li>
+                            <li><a href="#">فرصت های شغلی</a></li>
+                            <li><a href="#">تماس با ما</a></li>
+                            <li><a href="#">همکاری با سازمان ها</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-12 mt-2 mb-3">
+                        <div class="footer-light-text">
+                            استفاده از مطالب فروشگاه اینترنتی همتا فقط برای مقاصد غیرتجاری و با ذکر منبع بلامانع است..
+                        </div>
+                    </div>
+                    <div class="col-12 text-center">
+                        <div class="copy-right-mini-footer">
+                            © All rights reserved. Designed by BahramiiiRad
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- end Page mini-Footer -->
+
+    </div>
+
+    <!-- JS Global Compulsory -->
+    <script src="~/js/jquery-3.5.1.min.js"></script>
+    <script src="~/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

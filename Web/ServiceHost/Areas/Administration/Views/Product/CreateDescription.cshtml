@@ -1,0 +1,56 @@
+﻿@model PM.Application.ProductDescriptions.Commands.CreateProductDescription.CreateProductDescriptionCommand
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 class="modal-title">ایجاد توضیحات جدید</h4>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">ایجاد توضیحات جدید</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <form method="post">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="Title" class="control-label">عنوان</label>
+                                        <input type="text" class="form-control" asp-for="Title">
+                                        <span asp-validation-for="Title" class="error"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div clas="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label asp-for="Description" class="control-label">متن</label>
+                                        <textarea asp-for="Description" id="default-editor">
+                                        <p><em>توضیحات</em>, <span style="text-decoration: underline;"><strong>محصول</strong></span></p></textarea>
+                                        <span asp-validation-for="Description" class="error"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <button type="submit" class="btn btn-info waves-effect waves-light">ایجاد</button>
+                            <a asp-action="Index" class="btn btn-dark waves-effect waves-light m-b-5">بازگشت</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+    {
+    <script>
+        tinymce.init({
+            selector: 'textarea#default-editor'
+        });
+    </script>
+}

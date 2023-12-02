@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<Nullable>disable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UserSecretsId>4c7cde62-097d-4507-be58-e419d280f4e7</UserSecretsId>
+		<AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.2" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\FS.SharedKernel\SH.Infrastructure\SH.Infrastructure.csproj" />
+		<ProjectReference Include="..\VG.Application\VG.Application.csproj" />
+		<ProjectReference Include="..\VG.Infrastructure.EfCore\VG.Infrastructure.EfCore.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Update="appsettings*.json">
+			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
+		</Content>
+	</ItemGroup>
+
+</Project>

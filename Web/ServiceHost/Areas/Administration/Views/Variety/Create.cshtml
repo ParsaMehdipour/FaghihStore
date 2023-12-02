@@ -1,0 +1,63 @@
+﻿@model VG.Application.Varieties.Commands.CreateVariety.CreateVarietyCommand
+
+@{
+    ViewData["HeaderTitle"] = "ایجاد نوع";
+}
+
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 class="modal-title">ایجاد برند جدید</h4>
+</div>
+
+<form asp-area="Administration" asp-controller="Variety" asp-action="Create"
+      method="post"
+      data-ajax="true"
+      data-callback=""
+      data-action="Refresh"
+      enctype="multipart/form-data">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="VarietyGroupId">گروه نوع</label>
+                    <select asp-for="VarietyGroupId" class="form-control" dir="rtl" asp-items="ViewBag.VarietyGroups">
+                        <option value="@Guid.Empty">انتخاب گروه نوع</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="BoxType">باکس</label>
+                    <select asp-for="BoxType" class="form-control" dir="rtl" asp-items="ViewBag.BoxTypes">
+                        <option value="@Guid.Empty">انتخاب باکس نمایش</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Title" class="control-label">عنوان</label>
+                    <input type="text" class="form-control" asp-for="Title">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="ColorCode" class="control-label">کد رنگ</label>
+                    <input type="text" class="form-control" asp-for="ColorCode">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Size" class="control-label">سایز</label>
+                    <input type="text" class="form-control" asp-for="Size">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">بستن</button>
+        <button type="submit" class="btn btn-info waves-effect waves-light">ایجاد</button>
+    </div>
+</form>

@@ -1,0 +1,51 @@
+﻿@using PM.Application.ProductTraits.Commands.CreateProductTraitItem;
+@model CreateProductTraitItemCommand
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 class="modal-title">ایجاد ویژگی محصول جدید</h4>
+</div>
+
+<form asp-area="Administration" asp-controller="ProductTrait" asp-action="Create"
+      method="post"
+      data-ajax="true"
+      data-callback=""
+      data-action="Refresh">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="TraitId">ویژگی</label>
+                    <select asp-for="TraitId" class="form-control" dir="rtl" asp-items="ViewBag.Traits">
+                        <option value="@Guid.Empty">انتخاب ویژگی(گروه)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Value" class="control-label">مقدار</label>
+                    <input class="form-control" asp-for="Value">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="OrderNumber" class="control-label">اولویت</label>
+                    <input type="text" class="form-control" asp-for="OrderNumber" value="1">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="HasInGeneralSpecification" class="control-label">نمایش در ویژگی های عمومی</label>
+                    <input class="form-check" asp-for="HasInGeneralSpecification">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" asp-for="ProductId" />
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">بستن</button>
+        <button type="submit" class="btn btn-success waves-effect waves-light">ایجاد</button>
+    </div>
+</form>

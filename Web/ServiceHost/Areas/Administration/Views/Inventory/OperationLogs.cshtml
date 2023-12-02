@@ -1,0 +1,93 @@
+﻿@using Inventory.Domain.Enums
+@model ResponseModel<IEnumerable<Inventory.Application.Inventories.Queries.GetInventoryOperationLogs.GetInventoryOperationLogsDto>,Inventory.Application.Criteria.InventoryOperationQueryStringParameters>
+
+@{
+    ViewData["Title"] = "سوابق گردش انبار";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">جستجو در محصولات</h3>
+            </div>
+            <div class="panel-body">
+                <form class="form-inline" role="form" method="get">
+                    <div class="form-group">
+                        <label class="sr-only" asp-for="Parameters.Description"></label>
+                        <input class="form-control" asp-for="Parameters.Description" placeholder="توضیحات">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" asp-for="Parameters.Count"></label>
+                        <input class="form-control" asp-for="Parameters.Count" placeholder="تعداد">
+                    </div>
+                    <button type="submit" class="btn btn-success waves-effect waves-light m-l-10">جستجو</button>
+                    <a class="btn btn-primary waves-effect waves-light m-l-10" asp-action="Index">مشاهده همه</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="ProductCategoriesDiv">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">سوابق گردش (@Model.Model.Count())</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <table id="datatable" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>تعداد</th>
+                                    <th>تاریخ</th>
+                                    <th>عملیات</th>
+                                    <th>موجودی فعلی</th>
+                                    <th>عملگر</th>
+                                    <th>توضیحات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Model)
+                                {
+                                    <tr class="text-white @(item.OperationType == InventoryOperationType.Increased ? "bg-success" : "bg-danger")">
+                                        <td>@item.Count</td>
+                                        <td>@item.OperationDate</td>
+                                        <td>
+                                            @if (item.OperationType == InventoryOperationType.Increased)
+                                            {
+                                                <span>افزایش</span>
+                                            }
+                                            else
+                                            {
+                                                <span>کاهش</span>
+                                            }
+                                        </td>
+                                        <td>@item.CurrentCount</td>
+                                        <td>@item.OperatorFullName</td>
+                                        <td>@item.Description</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/adminTheme/assets/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/adminTheme/assets/datatables/dataTables.bootstrap.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#datatable').dataTable({
+                order: [[1, 'desc']],
+            });
+        });
+    </script>
+}

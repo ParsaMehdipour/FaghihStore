@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!--<ProjectReference Include="..\..\..\01_LampshadeQuery\01_LampshadeQuery.csproj" />-->
+    <ProjectReference Include="..\PM.Application.Contracts\PM.Application.Contracts.csproj" />
+    <ProjectReference Include="..\PM.Application\PM.Application.csproj" />
+    <ProjectReference Include="..\PM.Domain\PM.Domain.csproj" />
+    <ProjectReference Include="..\PM.Infrastructure.InventoryAcl\PM.Infrastructure.InventoryAcl.csproj" />
+    <ProjectReference Include="..\PM.Infrastructure.ModulesAcl\PM.Infrastructure.ModulesAcl.csproj" />
+  </ItemGroup>
+
+</Project>
