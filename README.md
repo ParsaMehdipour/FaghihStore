@@ -1,7 +1,5 @@
 # FaghihStore
 
-![FaghihStore](https://via.placeholder.com/1000x300.png?text=FaghihStore)
-
 **E-Commerce Platform with a Modular Monolith Architecture**
 
 ---
